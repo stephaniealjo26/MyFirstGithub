@@ -35,7 +35,7 @@ class MainActivity : ComponentActivity() {
                     ) {
                         composable("home") { HomeScreen(navController) }
                         composable("student1") {
-                            StudentProfile("aStudent 1", "Tep", navController)
+                            StudentProfile("aStudent 1", "Stephanie", navController)
                         }
                         composable("student2") {
                             StudentProfile("Student 2", "King", navController)
@@ -128,3 +128,5 @@ fun StudentProfile(
         Text(text = bio, style = MaterialTheme.typography.bodyLarge)
     }
 }
+
+
