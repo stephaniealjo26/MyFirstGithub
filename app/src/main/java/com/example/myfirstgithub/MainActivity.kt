@@ -157,7 +157,7 @@ fun StudentProfile2(
             Box(contentAlignment = Alignment.Center) {
                 // Image
                 Image(
-                    painter = painterResource(id = R.drawable.king1),
+                    painter = painterResource(id = R.drawable.ying123),
                     contentDescription = "Student Photo",
                     modifier = Modifier.size(120.dp)
                 )
