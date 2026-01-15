@@ -35,7 +35,7 @@ class MainActivity : ComponentActivity() {
                     ) {
                         composable("home") { HomeScreen(navController) }
                         composable("student1") {
-                            StudentProfile("Student 1", "Tep", navController)
+                            StudentProfile("aStudent 1", "Tep", navController)
                         }
                         composable("student2") {
                             StudentProfile("Student 2", "King", navController)
