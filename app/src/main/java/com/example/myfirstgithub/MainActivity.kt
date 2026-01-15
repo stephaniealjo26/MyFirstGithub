@@ -41,13 +41,13 @@ class MainActivity : ComponentActivity() {
                             StudentProfile2("Student 2", "King", navController)
                         }
                         composable("student3") {
-                            StudentProfile("Student 3", "Wes", navController)
+                            StudentProfile3("Student 3", "Wes", navController)
                         }
                         composable("student4") {
-                            StudentProfile("Student 4", "Renz", navController)
+                            StudentProfile4("Student 4", "Renz", navController)
                         }
                         composable("student5") {
-                            StudentProfile("Student 5", "Ambat", navController)
+                            StudentProfile5("Student 5", "Ambat", navController)
                         }
                     }
                 }
@@ -127,6 +127,51 @@ fun StudentProfile(
 }
 
 @Composable
+fun StudentProfile3(
+    name: String,
+    bio: String,
+    navController: NavController
+) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+
+        // Back Button
+        Button(
+            onClick = { navController.popBackStack() },
+            modifier = Modifier.align(Alignment.Start)
+        ) {
+            Text("Back")
+        }
+
+        Spacer(modifier = Modifier.height(24.dp))
+
+        Surface(
+            modifier = Modifier.size(120.dp),
+            color = MaterialTheme.colorScheme.primaryContainer,
+            shape = MaterialTheme.shapes.medium
+        ) {
+            Box(contentAlignment = Alignment.Center) {
+                // Image
+                Image(
+                    painter = painterResource(id = R.drawable.wes),
+                    contentDescription = "Student Photo",
+                    modifier = Modifier.size(120.dp)
+                )
+            }
+        }
+
+        Spacer(modifier = Modifier.height(16.dp))
+        Text(text = name, style = MaterialTheme.typography.headlineMedium)
+        Spacer(modifier = Modifier.height(8.dp))
+        Text(text = bio, style = MaterialTheme.typography.bodyLarge)
+    }
+}
+
+@Composable
 fun StudentProfile2(
     name: String,
     bio: String,
@@ -158,6 +203,96 @@ fun StudentProfile2(
                 // Image
                 Image(
                     painter = painterResource(id = R.drawable.ying123),
+                    contentDescription = "Student Photo",
+                    modifier = Modifier.size(120.dp)
+                )
+            }
+        }
+
+        Spacer(modifier = Modifier.height(16.dp))
+        Text(text = name, style = MaterialTheme.typography.headlineMedium)
+        Spacer(modifier = Modifier.height(8.dp))
+        Text(text = bio, style = MaterialTheme.typography.bodyLarge)
+    }
+}
+
+@Composable
+fun StudentProfile4(
+    name: String,
+    bio: String,
+    navController: NavController
+) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+
+        // Back Button
+        Button(
+            onClick = { navController.popBackStack() },
+            modifier = Modifier.align(Alignment.Start)
+        ) {
+            Text("Back")
+        }
+
+        Spacer(modifier = Modifier.height(24.dp))
+
+        Surface(
+            modifier = Modifier.size(120.dp),
+            color = MaterialTheme.colorScheme.primaryContainer,
+            shape = MaterialTheme.shapes.medium
+        ) {
+            Box(contentAlignment = Alignment.Center) {
+                // Image
+                Image(
+                    painter = painterResource(id = R.drawable.renz),
+                    contentDescription = "Student Photo",
+                    modifier = Modifier.size(120.dp)
+                )
+            }
+        }
+
+        Spacer(modifier = Modifier.height(16.dp))
+        Text(text = name, style = MaterialTheme.typography.headlineMedium)
+        Spacer(modifier = Modifier.height(8.dp))
+        Text(text = bio, style = MaterialTheme.typography.bodyLarge)
+    }
+}
+
+@Composable
+fun StudentProfile5(
+    name: String,
+    bio: String,
+    navController: NavController
+) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+
+        // Back Button
+        Button(
+            onClick = { navController.popBackStack() },
+            modifier = Modifier.align(Alignment.Start)
+        ) {
+            Text("Back")
+        }
+
+        Spacer(modifier = Modifier.height(24.dp))
+
+        Surface(
+            modifier = Modifier.size(120.dp),
+            color = MaterialTheme.colorScheme.primaryContainer,
+            shape = MaterialTheme.shapes.medium
+        ) {
+            Box(contentAlignment = Alignment.Center) {
+                // Image
+                Image(
+                    painter = painterResource(id = R.drawable.ambat),
                     contentDescription = "Student Photo",
                     modifier = Modifier.size(120.dp)
                 )
