@@ -4,12 +4,15 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -22,22 +25,30 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             MyFirstGithubTheme {
-                // The NavController keeps track of which screen we are on
                 val navController = rememberNavController()
 
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    // The NavHost defines all the "pages" in your app
                     NavHost(
                         navController = navController,
                         startDestination = "home",
                         modifier = Modifier.padding(innerPadding)
                     ) {
                         composable("home") { HomeScreen(navController) }
-                        composable("student1") { StudentProfile(name = "Student 1", bio = "Tep") }
-                        composable("student2") { StudentProfile(name = "Student 2", bio = "King") }
-                        composable("student3") { StudentProfile(name = "Student 3", bio = "Wes") }
-                        composable("student4") { StudentProfile(name = "Student 4", bio = "Renz") }
-                        composable("student4") { StudentProfile(name = "Student 5", bio = "Ambat") }
+                        composable("student1") {
+                            StudentProfile("Student 1", "Tep", navController)
+                        }
+                        composable("student2") {
+                            StudentProfile("Student 2", "King", navController)
+                        }
+                        composable("student3") {
+                            StudentProfile("Student 3", "Wes", navController)
+                        }
+                        composable("student4") {
+                            StudentProfile("Student 4", "Renz", navController)
+                        }
+                        composable("student5") {
+                            StudentProfile("Student 5", "Ambat", navController)
+                        }
                     }
                 }
             }
@@ -55,13 +66,14 @@ fun HomeScreen(navController: NavHostController) {
         Text(text = "The Dream Team", style = MaterialTheme.typography.headlineLarge)
         Spacer(modifier = Modifier.height(24.dp))
 
-        // Create a button for each student
         val students = listOf("student1", "student2", "student3", "student4", "student5")
 
         students.forEachIndexed { index, route ->
             Button(
                 onClick = { navController.navigate(route) },
-                modifier = Modifier.fillMaxWidth(0.7f).padding(vertical = 4.dp)
+                modifier = Modifier
+                    .fillMaxWidth(0.7f)
+                    .padding(vertical = 4.dp)
             ) {
                 Text("View Student ${index + 1}")
             }
@@ -70,20 +82,43 @@ fun HomeScreen(navController: NavHostController) {
 }
 
 @Composable
-fun StudentProfile(name: String, bio: String) {
+fun StudentProfile(
+    name: String,
+    bio: String,
+    navController: NavController
+) {
     Column(
-        modifier = Modifier.fillMaxSize().padding(16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        // Placeholder for Photo
+
+        // Back Button
+        Button(
+            onClick = { navController.popBackStack() },
+            modifier = Modifier.align(Alignment.Start)
+        ) {
+            Text("Back")
+        }
+
+        Spacer(modifier = Modifier.height(24.dp))
+
+
+
+
         Surface(
             modifier = Modifier.size(120.dp),
             color = MaterialTheme.colorScheme.primaryContainer,
             shape = MaterialTheme.shapes.medium
         ) {
             Box(contentAlignment = Alignment.Center) {
-                Text("Photo")
+                // Image
+                Image(
+                    painter = painterResource(id = R.drawable.liza),
+                    contentDescription = "Student Photo",
+                    modifier = Modifier.size(120.dp)
+                )
             }
         }
 
