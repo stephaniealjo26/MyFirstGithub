@@ -35,10 +35,10 @@ class MainActivity : ComponentActivity() {
                     ) {
                         composable("home") { HomeScreen(navController) }
                         composable("student1") {
-                            StudentProfile("aStudent 1", "Stephanie", navController)
+                            StudentProfile("Student 1", "Stephanie", navController)
                         }
                         composable("student2") {
-                            StudentProfile("Student 2", "King", navController)
+                            StudentProfile2("Student 2", "King", navController)
                         }
                         composable("student3") {
                             StudentProfile("Student 3", "Wes", navController)
@@ -104,9 +104,6 @@ fun StudentProfile(
 
         Spacer(modifier = Modifier.height(24.dp))
 
-
-
-
         Surface(
             modifier = Modifier.size(120.dp),
             color = MaterialTheme.colorScheme.primaryContainer,
@@ -129,4 +126,48 @@ fun StudentProfile(
     }
 }
 
+@Composable
+fun StudentProfile2(
+    name: String,
+    bio: String,
+    navController: NavController
+) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+
+        // Back Button
+        Button(
+            onClick = { navController.popBackStack() },
+            modifier = Modifier.align(Alignment.Start)
+        ) {
+            Text("Back")
+        }
+
+        Spacer(modifier = Modifier.height(24.dp))
+
+        Surface(
+            modifier = Modifier.size(120.dp),
+            color = MaterialTheme.colorScheme.primaryContainer,
+            shape = MaterialTheme.shapes.medium
+        ) {
+            Box(contentAlignment = Alignment.Center) {
+                // Image
+                Image(
+                    painter = painterResource(id = R.drawable.king1),
+                    contentDescription = "Student Photo",
+                    modifier = Modifier.size(120.dp)
+                )
+            }
+        }
+
+        Spacer(modifier = Modifier.height(16.dp))
+        Text(text = name, style = MaterialTheme.typography.headlineMedium)
+        Spacer(modifier = Modifier.height(8.dp))
+        Text(text = bio, style = MaterialTheme.typography.bodyLarge)
+    }
+}
 
