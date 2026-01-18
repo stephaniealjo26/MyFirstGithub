@@ -22,6 +22,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.myfirstgithub.ui.theme.MyFirstGithubTheme
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,7 +43,7 @@ class MainActivity : ComponentActivity() {
                              AljoScreen("Student 1", "Aljo, Stephanie", navController)
                         }
                         composable("student2") {
-                            AmandyScreen("Student 2", "Amandy, King Humphrey", navController)
+                            AmandyScreen("Student 2", "Maybe I know... maybe I don’t", navController)
                         }
                         composable("student3") {
                             AlmajedaScreen("Student 3", "Almajeda, Wesly R.", navController)
@@ -110,25 +111,33 @@ fun AljoScreen(
 
         Surface(
             modifier = Modifier.size(120.dp),
-            color = MaterialTheme.colorScheme.primaryContainer,
-            shape = MaterialTheme.shapes.medium
+            shape = CircleShape,
+            color = MaterialTheme.colorScheme.primaryContainer
         ) {
-            Box(contentAlignment = Alignment.Center) {
-                // Image
-                Image(
-                    painter = painterResource(id = R.drawable.liza),
-                    contentDescription = "Student Photo",
-                    modifier = Modifier.size(120.dp)
-                )
-            }
+            Image(
+                painter = painterResource(id = R.drawable.aljo),
+                contentDescription = "Student Photo",
+                contentScale = ContentScale.Crop,
+                modifier = Modifier.fillMaxSize()
+            )
         }
 
         Spacer(modifier = Modifier.height(16.dp))
-        Text(text = name, style = MaterialTheme.typography.headlineMedium)
+
+        Text(
+            text = name,
+            style = MaterialTheme.typography.headlineMedium
+        )
+
         Spacer(modifier = Modifier.height(8.dp))
-        Text(text = bio, style = MaterialTheme.typography.bodyLarge)
+
+        Text(
+            text = bio,
+            style = MaterialTheme.typography.bodyLarge
+        )
     }
 }
+
 
 @Composable
 fun AlmajedaScreen(
@@ -220,41 +229,125 @@ fun AmandyScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
+            .padding(16.dp)
     ) {
 
         // Back Button
         Button(
-            onClick = { navController.popBackStack() },
-            modifier = Modifier.align(Alignment.Start)
+            onClick = { navController.popBackStack() }
         ) {
             Text("Back")
         }
 
         Spacer(modifier = Modifier.height(24.dp))
 
-        Surface(
-            modifier = Modifier.size(120.dp),
-            color = MaterialTheme.colorScheme.primaryContainer,
-            shape = MaterialTheme.shapes.medium
+        // Profile Header
+        Column(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Box(contentAlignment = Alignment.Center) {
-                // Image
+            Surface(
+                modifier = Modifier.size(120.dp),
+                shape = CircleShape,
+                color = MaterialTheme.colorScheme.primaryContainer
+            ) {
                 Image(
                     painter = painterResource(id = R.drawable.king),
-                    contentDescription = "Student Photo",
-                    modifier = Modifier.size(120.dp)
+                    contentDescription = "Profile Photo",
+                    contentScale = ContentScale.Crop,
+                    modifier = Modifier.fillMaxSize()
                 )
+            }
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            Text(
+                text = "King Amandy",
+                style = MaterialTheme.typography.headlineMedium
+            )
+
+            Text(
+                text = "Information Technology Student",
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+        }
+
+        Spacer(modifier = Modifier.height(24.dp))
+
+        // Action Buttons
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceEvenly
+        ) {
+            Button(onClick = { /* Message */ }) {
+                Text("Message")
+            }
+            OutlinedButton(onClick = { /* Follow */ }) {
+                Text("Follow")
             }
         }
 
-        Spacer(modifier = Modifier.height(16.dp))
-        Text(text = name, style = MaterialTheme.typography.headlineMedium)
+        Spacer(modifier = Modifier.height(24.dp))
+
+        // About Section
+        Text(
+            text = "About",
+            style = MaterialTheme.typography.titleMedium
+        )
+
         Spacer(modifier = Modifier.height(8.dp))
-        Text(text = bio, style = MaterialTheme.typography.bodyLarge)
+
+        Text(
+            text = bio,
+            style = MaterialTheme.typography.bodyLarge
+        )
+
+        Spacer(modifier = Modifier.height(24.dp))
+
+        // Details Section
+        Text(
+            text = "Details",
+            style = MaterialTheme.typography.titleMedium
+        )
+
+        Spacer(modifier = Modifier.height(8.dp))
+
+        // Details rows
+        Column {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 4.dp),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Text("Year", color = MaterialTheme.colorScheme.onSurfaceVariant)
+                Text("3rd Year")
+            }
+
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 4.dp),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Text("Interests", color = MaterialTheme.colorScheme.onSurfaceVariant)
+                Text("Android, Gaming, AI")
+            }
+
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 4.dp),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Text("Location", color = MaterialTheme.colorScheme.onSurfaceVariant)
+                Text("Probably indoors")
+            }
+        }
     }
 }
+
 
 @Composable
 fun AlmonteScreen(
