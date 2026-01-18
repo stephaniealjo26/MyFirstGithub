@@ -5,11 +5,14 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -18,6 +21,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.myfirstgithub.ui.theme.MyFirstGithubTheme
+import androidx.compose.ui.graphics.Color
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,19 +39,19 @@ class MainActivity : ComponentActivity() {
                     ) {
                         composable("home") { HomeScreen(navController) }
                         composable("student1") {
-                            StudentProfile("Student 1", "Stephanie", navController)
+                             AljoScreen("Student 1", "Aljo, Stephanie", navController)
                         }
                         composable("student2") {
-                            StudentProfile2("Student 2", "King", navController)
+                            AmandyScreen("Student 2", "Amandy, King Humphrey", navController)
                         }
                         composable("student3") {
-                            StudentProfile3("Student 3", "Wes", navController)
+                            AlmajedaScreen("Student 3", "Almajeda, Wesly R.", navController)
                         }
                         composable("student4") {
-                            StudentProfile4("Student 4", "Renz", navController)
+                            AlmonteScreen("Student 4", "Almonte, REnz Policarp", navController)
                         }
                         composable("student5") {
-                            StudentProfile5("Student 5", "Ambat", navController)
+                            AmbatScreen("Student 5", "Ambat, Anthony", navController)
                         }
                     }
                 }
@@ -73,7 +77,7 @@ fun HomeScreen(navController: NavHostController) {
                 onClick = { navController.navigate(route) },
                 modifier = Modifier
                     .fillMaxWidth(0.7f)
-                    .padding(vertical = 4.dp)
+                    .padding(vertical = 5.dp)
             ) {
                 Text("View Student ${index + 1}")
             }
@@ -82,7 +86,7 @@ fun HomeScreen(navController: NavHostController) {
 }
 
 @Composable
-fun StudentProfile(
+fun AljoScreen(
     name: String,
     bio: String,
     navController: NavController
@@ -127,7 +131,88 @@ fun StudentProfile(
 }
 
 @Composable
-fun StudentProfile3(
+fun AlmajedaScreen(
+    name: String,
+    bio: String,
+    navController: NavController
+) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        // Back Button
+        Button(
+            onClick = { navController.popBackStack() },
+            modifier = Modifier.align(Alignment.Start)
+        ) {
+            Text("Back")
+        }
+
+        Spacer(modifier = Modifier.height(24.dp))
+
+        // Circular Image using Clip
+        Surface(
+            modifier = Modifier
+                .size(150.dp) // Slightly larger for better visibility
+                .clip(androidx.compose.foundation.shape.CircleShape),
+            color = MaterialTheme.colorScheme.primaryContainer
+        ) {
+            Image(
+                painter = painterResource(id = R.drawable.wesly),
+                contentDescription = "Student Photo",
+                contentScale = androidx.compose.ui.layout.ContentScale.Crop, // Ensures image fills the circle
+                modifier = Modifier
+                    .size(150.dp)
+                    .clip(CircleShape) // Makes the image round
+                    .border(3.dp, Color.LightGray, CircleShape) // Adds the green border
+            )
+        }
+
+        Spacer(modifier = Modifier.height(24.dp))
+
+        Text(
+            text = "Wesly Almajeda",
+            style = MaterialTheme.typography.headlineSmall,
+            color = MaterialTheme.colorScheme.primary
+        )
+
+        HorizontalDivider(modifier = Modifier.padding(vertical = 20.dp))
+
+        // Organized Bio Section
+        Column(
+            modifier = Modifier.fillMaxWidth().padding(horizontal = 20.dp),
+            verticalArrangement = Arrangement.spacedBy(15.dp)
+        ) {
+            BioRow(label = "Name:", value = bio) // Using the bio parameter for the full name
+            BioRow(label = "Student no.:", value = "2300370")
+            BioRow(label = "Program:", value = "BSIT")
+            BioRow(label = "Year & section:", value = "3IT - A")
+            BioRow(label = "Status:", value = "Irregular")
+        }
+    }
+}
+
+// Helper Composable to keep the alignment organized
+@Composable
+fun BioRow(label: String, value: String) {
+    Row(modifier = Modifier.fillMaxWidth()) {
+        Text(
+            text = label,
+            modifier = Modifier.width(120.dp),
+            style = MaterialTheme.typography.bodyLarge,
+            fontWeight = androidx.compose.ui.text.font.FontWeight.Bold
+        )
+        Text(
+            text = value,
+            style = MaterialTheme.typography.bodyLarge
+        )
+    }
+}
+
+@Composable
+fun AmandyScreen(
     name: String,
     bio: String,
     navController: NavController
@@ -157,7 +242,7 @@ fun StudentProfile3(
             Box(contentAlignment = Alignment.Center) {
                 // Image
                 Image(
-                    painter = painterResource(id = R.drawable.wes),
+                    painter = painterResource(id = R.drawable.king),
                     contentDescription = "Student Photo",
                     modifier = Modifier.size(120.dp)
                 )
@@ -172,52 +257,7 @@ fun StudentProfile3(
 }
 
 @Composable
-fun StudentProfile2(
-    name: String,
-    bio: String,
-    navController: NavController
-) {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-
-        // Back Button
-        Button(
-            onClick = { navController.popBackStack() },
-            modifier = Modifier.align(Alignment.Start)
-        ) {
-            Text("Back")
-        }
-
-        Spacer(modifier = Modifier.height(24.dp))
-
-        Surface(
-            modifier = Modifier.size(120.dp),
-            color = MaterialTheme.colorScheme.primaryContainer,
-            shape = MaterialTheme.shapes.medium
-        ) {
-            Box(contentAlignment = Alignment.Center) {
-                // Image
-                Image(
-                    painter = painterResource(id = R.drawable.ying123),
-                    contentDescription = "Student Photo",
-                    modifier = Modifier.size(120.dp)
-                )
-            }
-        }
-
-        Spacer(modifier = Modifier.height(16.dp))
-        Text(text = name, style = MaterialTheme.typography.headlineMedium)
-        Spacer(modifier = Modifier.height(8.dp))
-        Text(text = bio, style = MaterialTheme.typography.bodyLarge)
-    }
-}
-
-@Composable
-fun StudentProfile4(
+fun AlmonteScreen(
     name: String,
     bio: String,
     navController: NavController
@@ -262,7 +302,7 @@ fun StudentProfile4(
 }
 
 @Composable
-fun StudentProfile5(
+fun AmbatScreen(
     name: String,
     bio: String,
     navController: NavController
