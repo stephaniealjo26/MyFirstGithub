@@ -346,3 +346,70 @@ fun AmbatScreen(
     }
 }
 
+@Composable
+fun StudentProfile5(
+    navController: NavController
+) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+
+        // Back Button
+        Button(
+            onClick = { navController.popBackStack() },
+            modifier = Modifier.align(Alignment.Start)
+        ) {
+            Text("Back")
+        }
+
+        Spacer(modifier = Modifier.height(24.dp))
+
+        // Profile Image
+        Surface(
+            modifier = Modifier.size(120.dp),
+            color = MaterialTheme.colorScheme.primaryContainer,
+            shape = MaterialTheme.shapes.medium
+        ) {
+            Box(contentAlignment = Alignment.Center) {
+                Image(
+                    painter = painterResource(id = R.drawable.ambat),
+                    contentDescription = "Student Photo",
+                    modifier = Modifier.size(120.dp)
+                )
+            }
+        }
+
+        Spacer(modifier = Modifier.height(24.dp))
+
+        // Student Information
+        Text(
+            text = "Anthony C. Ambat",
+            style = MaterialTheme.typography.headlineMedium
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Text(
+            text = "Student No: 2300375",
+            style = MaterialTheme.typography.bodyLarge
+        )
+
+        Text(
+            text = "Program: BSIT",
+            style = MaterialTheme.typography.bodyLarge
+        )
+
+        Text(
+            text = "Year & Section: 3IT-A",
+            style = MaterialTheme.typography.bodyLarge
+        )
+
+        Text(
+            text = "Status: Irregular",
+            style = MaterialTheme.typography.bodyLarge
+        )
+    }
+}
