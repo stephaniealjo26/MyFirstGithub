@@ -226,123 +226,138 @@ fun AmandyScreen(
     bio: String,
     navController: NavController
 ) {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp)
-    ) {
-
-        // Back Button
-        Button(
-            onClick = { navController.popBackStack() }
-        ) {
-            Text("Back")
-        }
-
-        Spacer(modifier = Modifier.height(24.dp))
-
-        // Profile Header
+    Box(modifier = Modifier.fillMaxSize()) {
+        // Background Image
+        Image(
+            painter = painterResource(id = R.drawable.king_bg),
+            contentDescription = null,
+            contentScale = ContentScale.Crop,
+            alignment = Alignment.TopCenter,
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(300.dp),
+            alpha = 0.7f
+        )
+        // Content
         Column(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalAlignment = Alignment.CenterHorizontally
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp)
         ) {
-            Surface(
-                modifier = Modifier.size(120.dp),
-                shape = CircleShape,
-                color = MaterialTheme.colorScheme.primaryContainer
+            // Back Button
+            Button(
+                onClick = { navController.popBackStack() }
             ) {
-                Image(
-                    painter = painterResource(id = R.drawable.king),
-                    contentDescription = "Profile Photo",
-                    contentScale = ContentScale.Crop,
-                    modifier = Modifier.fillMaxSize()
+                Text("Back")
+            }
+
+            Spacer(modifier = Modifier.height(24.dp))
+
+            // Profile Header
+            Column(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Surface(
+                    modifier = Modifier.size(120.dp),
+                    shape = CircleShape,
+                    color = MaterialTheme.colorScheme.primaryContainer
+                ) {
+                    Image(
+                        painter = painterResource(id = R.drawable.king),
+                        contentDescription = "Profile Photo",
+                        contentScale = ContentScale.Crop,
+                        modifier = Modifier.fillMaxSize()
+                    )
+                }
+
+                Spacer(modifier = Modifier.height(16.dp))
+
+                Text(
+                    text = "King Amandy",
+                    color = Color(0xFFFFFFFF),
+                    style = MaterialTheme.typography.headlineMedium
+                )
+
+                Text(
+                    text = "Information Technology Student",
+                    color = Color(0xFFFFFFFF),
+                    style = MaterialTheme.typography.bodyMedium,
+
                 )
             }
 
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(24.dp))
 
+            // Action Buttons
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceEvenly
+            ) {
+                Button(onClick = { /* Message */ }) {
+                    Text("Message")
+                }
+                OutlinedButton(onClick = { /* Follow */ }) {
+                    Text("Follow")
+                }
+            }
+
+            Spacer(modifier = Modifier.height(24.dp))
+
+            // About Section
             Text(
-                text = "King Amandy",
-                style = MaterialTheme.typography.headlineMedium
+                text = "About",
+                style = MaterialTheme.typography.titleMedium
             )
 
+            Spacer(modifier = Modifier.height(8.dp))
+
             Text(
-                text = "Information Technology Student",
-                style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurfaceVariant
+                text = bio,
+                style = MaterialTheme.typography.bodyLarge
             )
-        }
 
-        Spacer(modifier = Modifier.height(24.dp))
+            Spacer(modifier = Modifier.height(24.dp))
 
-        // Action Buttons
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceEvenly
-        ) {
-            Button(onClick = { /* Message */ }) {
-                Text("Message")
-            }
-            OutlinedButton(onClick = { /* Follow */ }) {
-                Text("Follow")
-            }
-        }
+            // Details Section
+            Text(
+                text = "Details",
+                style = MaterialTheme.typography.titleMedium
+            )
 
-        Spacer(modifier = Modifier.height(24.dp))
+            Spacer(modifier = Modifier.height(8.dp))
 
-        // About Section
-        Text(
-            text = "About",
-            style = MaterialTheme.typography.titleMedium
-        )
+            // Details rows
+            Column {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(vertical = 4.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    Text("Year", color = MaterialTheme.colorScheme.onSurfaceVariant)
+                    Text("3rd Year")
+                }
 
-        Spacer(modifier = Modifier.height(8.dp))
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(vertical = 4.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    Text("Interests", color = MaterialTheme.colorScheme.onSurfaceVariant)
+                    Text("Android, Gaming, AI")
+                }
 
-        Text(
-            text = bio,
-            style = MaterialTheme.typography.bodyLarge
-        )
-
-        Spacer(modifier = Modifier.height(24.dp))
-
-        // Details Section
-        Text(
-            text = "Details",
-            style = MaterialTheme.typography.titleMedium
-        )
-
-        Spacer(modifier = Modifier.height(8.dp))
-
-        // Details rows
-        Column {
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(vertical = 4.dp),
-                horizontalArrangement = Arrangement.SpaceBetween
-            ) {
-                Text("Year", color = MaterialTheme.colorScheme.onSurfaceVariant)
-                Text("3rd Year")
-            }
-
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(vertical = 4.dp),
-                horizontalArrangement = Arrangement.SpaceBetween
-            ) {
-                Text("Interests", color = MaterialTheme.colorScheme.onSurfaceVariant)
-                Text("Android, Gaming, AI")
-            }
-
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(vertical = 4.dp),
-                horizontalArrangement = Arrangement.SpaceBetween
-            ) {
-                Text("Location", color = MaterialTheme.colorScheme.onSurfaceVariant)
-                Text("Probably indoors")
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(vertical = 4.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    Text("Location", color = MaterialTheme.colorScheme.onSurfaceVariant)
+                    Text("Probably indoors")
+                }
             }
         }
     }
