@@ -422,7 +422,6 @@ fun AmbatScreen(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
-        // Back Button
         Button(
             onClick = { navController.popBackStack() },
             modifier = Modifier.align(Alignment.Start)
@@ -433,91 +432,47 @@ fun AmbatScreen(
         Spacer(modifier = Modifier.height(24.dp))
 
         Surface(
-            modifier = Modifier.size(120.dp),
-            color = MaterialTheme.colorScheme.primaryContainer,
-            shape = MaterialTheme.shapes.medium
+            modifier = Modifier
+                .size(140.dp)
+                .clip(CircleShape),
+            color = MaterialTheme.colorScheme.primaryContainer
         ) {
-            Box(contentAlignment = Alignment.Center) {
-                // Image
-                Image(
-                    painter = painterResource(id = R.drawable.ambat),
-                    contentDescription = "Student Photo",
-                    modifier = Modifier.size(120.dp)
-                )
-            }
+            Image(
+                painter = painterResource(id = R.drawable.ambat),
+                contentDescription = "Student Photo",
+                contentScale = ContentScale.Crop,
+                modifier = Modifier.fillMaxSize()
+            )
         }
 
         Spacer(modifier = Modifier.height(16.dp))
-        Text(text = name, style = MaterialTheme.typography.headlineMedium)
-        Spacer(modifier = Modifier.height(8.dp))
-        Text(text = bio, style = MaterialTheme.typography.bodyLarge)
-    }
-}
 
-@Composable
-fun StudentProfile5(
-    navController: NavController
-) {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-
-        // Back Button
-        Button(
-            onClick = { navController.popBackStack() },
-            modifier = Modifier.align(Alignment.Start)
-        ) {
-            Text("Back")
-        }
-
-        Spacer(modifier = Modifier.height(24.dp))
-
-        // Profile Image
-        Surface(
-            modifier = Modifier.size(120.dp),
-            color = MaterialTheme.colorScheme.primaryContainer,
-            shape = MaterialTheme.shapes.medium
-        ) {
-            Box(contentAlignment = Alignment.Center) {
-                Image(
-                    painter = painterResource(id = R.drawable.ambat),
-                    contentDescription = "Student Photo",
-                    modifier = Modifier.size(120.dp)
-                )
-            }
-        }
-
-        Spacer(modifier = Modifier.height(24.dp))
-
-        // Student Information
         Text(
             text = "Anthony C. Ambat",
             style = MaterialTheme.typography.headlineMedium
         )
 
+        Spacer(modifier = Modifier.height(8.dp))
+
+        Text(
+            text = "A third-year BS Information Technology student currently exploring UI/UX design.",
+            style = MaterialTheme.typography.bodyLarge,
+            modifier = Modifier.padding(horizontal = 16.dp)
+        )
+
+        Spacer(modifier = Modifier.height(24.dp))
+        HorizontalDivider()
         Spacer(modifier = Modifier.height(16.dp))
 
-        Text(
-            text = "Student No: 2300375",
-            style = MaterialTheme.typography.bodyLarge
-        )
-
-        Text(
-            text = "Program: BSIT",
-            style = MaterialTheme.typography.bodyLarge
-        )
-
-        Text(
-            text = "Year & Section: 3IT-A",
-            style = MaterialTheme.typography.bodyLarge
-        )
-
-        Text(
-            text = "Status: Irregular",
-            style = MaterialTheme.typography.bodyLarge
-        )
+        Column(
+            modifier = Modifier.fillMaxWidth(),
+            verticalArrangement = Arrangement.spacedBy(10.dp)
+        ) {
+            BioRow("Student No.:", "2300375")
+            BioRow("Program:", "BS Information Technology")
+            BioRow("Year & Section:", "3IT - A")
+            BioRow("Status:", "Irregular")
+            BioRow("Interests:", " UI/UX")
+        }
     }
 }
